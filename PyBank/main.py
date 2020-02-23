@@ -5,14 +5,14 @@ import os
 import csv
 
 csvpath = os.path.join('budget_data.csv')
+PyBank_output = ('PyBank.txt')
+
 
 #lists
 
 total_months = 0
 nettotal_profit_loss = 0
 orig_profit_loss = 0
-
-
 
 net_change_list = []
 month_change_list = []
@@ -84,10 +84,13 @@ with open(csvpath, newline='') as budgetdata:
 
 average_monthly_net_change = sum(net_change_list) / len(month_change_list)
 
+with open(PyBank_output, "w", newline='') as textfile:
 
+        print ("Financial Analysis", file=textfile)
+        print ("-----------------------------------", file=textfile)
+        print ( "Total Months: " + str(total_months), file=textfile)
+        print ("Total: $" + str(nettotal_profit_loss), file=textfile)
+        print ("Avg. Change in Profit/Losses: $" + str(average_monthly_net_change ), file=textfile)
+        print ("Greatest Increase in Profit: " + str(greatest_increase[0]) + " / " + "$" + str(greatest_increase[1]), file=textfile) 
+        print ("Greatest Decrease in Profit: " + str(greatest_decrease[0]) + " / " + "$" + str(greatest_decrease[1]), file=textfile) 
 
-print ( "Total Months: " + str(total_months))
-print ("Total: $" + str(nettotal_profit_loss))
-print ("Avg. Change in Profit/Losses: $" + str(average_monthly_net_change ))
-print ("Greatest Increase in Profit: " + str(greatest_increase[0]) + " / " + "$" + str(greatest_increase[1])) 
-print ("Greatest Decrease in Profit: " + str(greatest_decrease[0]) + " / " + "$" + str(greatest_decrease[1])) 
